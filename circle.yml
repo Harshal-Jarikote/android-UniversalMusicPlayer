@@ -10,7 +10,6 @@ machine:
 test:
   override:
     - ./gradlew assembleDebug
-    - cp -r mobile/build/ $CIRCLE_ARTIFACTS
+    - cp mobile/build/outputs/apk/mobile-debug.apk $CIRCLE_ARTIFACTS
   post:
     - aws --version
-    - aws s3 ls
