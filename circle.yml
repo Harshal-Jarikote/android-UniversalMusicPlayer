@@ -8,10 +8,11 @@ machine:
     - echo $VERSION_CODE
     
   environment:
-    GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx3584m -XX:+HeapDumpOnOutOfMemoryError", VERSION_CODE="$CIRCLE_BUILD_NUM"'
+    GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx3584m -XX:+HeapDumpOnOutOfMemoryError"'
     
 test:
   override:
+    - export VERSION_CODE=$CIRCLE_BUILD_NUM
     - echo $CIRCLE_BUILD_NUM
     - echo $VERSION_CODE
     - ./gradlew assembleDebug
