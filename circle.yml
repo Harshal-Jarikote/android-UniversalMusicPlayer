@@ -4,11 +4,16 @@ machine:
     - mkdir -p ${ANDROID_HOME}"/licenses" 
     - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
     - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
+    - echo $CIRCLE_BUILD_NUM
+    - echo $VERSION_CODE
+    - GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx3584m -XX:+HeapDumpOnOutOfMemoryError" VERSION_CODE="$CIRCLE_BUILD_NUM"'
     
    
 
 test:
   override:
+    - echo $CIRCLE_BUILD_NUM
+    - echo $VERSION_CODE
     - ./gradlew assembleDebug
     - cp mobile/build/outputs/apk/mobile-debug.apk $CIRCLE_ARTIFACTS
   post:
