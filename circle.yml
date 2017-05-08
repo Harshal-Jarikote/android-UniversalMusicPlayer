@@ -6,10 +6,12 @@ machine:
     - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
     - echo $CIRCLE_BUILD_NUM
     - echo $VERSION_CODE
-    - GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx3584m -XX:+HeapDumpOnOutOfMemoryError" VERSION_CODE="$CIRCLE_BUILD_NUM"'
     
-   
-
+  environment:
+    - GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx3584m -XX:+HeapDumpOnOutOfMemoryError" VERSION_CODE="$CIRCLE_BUILD_NUM"'
+    - echo $CIRCLE_BUILD_NUM
+    - echo $VERSION_CODE
+    
 test:
   override:
     - echo $CIRCLE_BUILD_NUM
